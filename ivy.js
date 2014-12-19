@@ -321,28 +321,3 @@ util.inherits(IvyBus, EventEmitter);
 
 
 module.exports = IvyBus;
-
-
-
-
-var ivy = new IvyBus("MyApp", "127.255.255.255", 2010);
-var subid = ivy.subscribe(/zog(.*):(.*)/, function(params){
-	console.log(params);
-});
-ivy.start();
-ivy.on('peerConnected', function(peer){
-	console.log(peer.name+" connected from "+peer.socket.address().address);
-});
-
-ivy.on('peerQuit', function(peer){
-	console.log(peer.name+" disconnected");
-});
-
-var input = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
-
-input.on('line', function(line){
-    ivy.send(line.toString());
-})

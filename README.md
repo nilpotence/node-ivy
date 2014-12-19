@@ -3,6 +3,13 @@
 node-ivy is a pure Javascript implementation of the Ivy Software Bus
 (http://www.eei.cena.fr/products/ivy/).
 
+## Install node-ivy
+
+```
+npm install node-ivy
+```
+
+
 ## Create an ivy bus
 
 ```js

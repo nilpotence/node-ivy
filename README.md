@@ -26,7 +26,8 @@ node-ivy is a pure Javascript implementation of the Ivy Software Bus
 * _params_ is an array containing the result of every catch block defined in the regex.
 
 ## Removing a previously set subscription
-```js
+
+```s
 	ivy.unsubscribe(subId);
 ```
 

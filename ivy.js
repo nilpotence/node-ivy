@@ -326,7 +326,7 @@ module.exports = IvyBus;
 
 
 var ivy = new IvyBus("MyApp", "127.255.255.255", 2010);
-var subid = ivy.subscribe(/fuck(.*):(.*)/, function(params){
+var subid = ivy.subscribe(/zog(.*):(.*)/, function(params){
 	console.log(params);
 });
 ivy.start();

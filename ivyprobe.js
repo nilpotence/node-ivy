@@ -42,5 +42,6 @@ var input = readline.createInterface({
 });
 
 input.on('line', function(line){
-    ivy.send(line.toString());
+	var c = ivy.send(line.toString());
+	console.log('-> Sent to '+c+' peer'+(c > 1 ?'s':''));
 })

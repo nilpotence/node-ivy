@@ -99,6 +99,7 @@ function IvyBus(appName, broadcastHost, broadcastPort){
 	}
 
 	function sendTextMessage(message){
+		var count = 0;
 		for(var i in peers){ //browse each peer
 			for(var j in peers[i].subscriptions){ //browse each peer's subscriptions
 				//If a subscription matches the message, send the message to that peer
@@ -114,10 +115,14 @@ function IvyBus(appName, broadcastHost, broadcastPort){
 
 					//Send the matched parameters
 					var msg = createMessage('2', peers[i].subscriptions[j].id, params);
+
 					sendMessage(peers[i], msg);
+					count++;
 				}
 			}
 		}
+
+		return count;
 	}
 	/*====================================*/
 
@@ -158,6 +163,7 @@ function IvyBus(appName, broadcastHost, broadcastPort){
 		for(k in subscriptions){
 			if(subscriptions[k].id === parseInt(identifier)){
 				var msgs = params.split("\u0003");
+				if(msgs && msgs.length > 0) msgs.splice(msgs.length-1, 1);
 				subscriptions[k].cb(msgs);
 			}
 		}
@@ -229,7 +235,7 @@ function IvyBus(appName, broadcastHost, broadcastPort){
 
 	function onPeerConnection(socket){
 
-		peer = {socket: socket, subscriptions: []};
+		var peer = {socket: socket, subscriptions: []};
 
 		//Add peer to the liste of connected peers
 		peers.push(peer);
@@ -313,7 +319,7 @@ function IvyBus(appName, broadcastHost, broadcastPort){
 	}
 
 	this.send = function(message){
-		sendTextMessage(message);
+		return sendTextMessage(message);
 	}
 }
 

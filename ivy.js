@@ -264,7 +264,7 @@ function IvyBus(appName, broadcastHost, broadcastPort){
 	}
 
 	function startBroadcasting(tcpAddress){
-		var server = dgram.createSocket('udp4');
+		var server = dgram.createSocket({type: 'udp4', reuseAddr: true});
 
 		server.on('listening', function () {
 			server.setBroadcast(true);

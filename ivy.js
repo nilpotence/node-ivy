@@ -111,7 +111,6 @@ function IvyBus(appName, broadcastHost, broadcastPort){
 					for(var k = 1; k < matches.length; k++){
 						params += matches[k]+'\u0003';
 					}
-					params = params.substr(0, params.length-1);;
 
 					//Send the matched parameters
 					var msg = createMessage('2', peers[i].subscriptions[j].id, params);
